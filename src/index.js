@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import { Provider } from 'react-redux';
+import { createStore , applyMiddleware } from 'redux';
+import { createBrowserHistory } from 'history';
+import thunk from 'redux-thunk';
+import { logger } from 'redux-logger';
+import {  Router } from 'react-router-dom';
+import reducers from './reducers';
+import App from './component/App';
+const store = createStore(reducers , applyMiddleware(thunk,logger));
+const history = createBrowserHistory({ basename: `${process.env.REACT_APP_BASE_URL}`});
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+        <Router history={history}>   
+            <App />
+        </Router>
+    </Provider>,
   </React.StrictMode>,
   document.getElementById('root')
 );

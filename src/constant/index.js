@@ -1,0 +1,4 @@
+export const CommonConstant = {
+    HOMESEARCHSUCCESS : "HOMESEARCH_SUCCESS",
+    HOMESEARCHFAIL : "HOMESEARCH_FAIL",
+}
